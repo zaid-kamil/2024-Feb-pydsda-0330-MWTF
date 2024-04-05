@@ -29,8 +29,18 @@ class Image(Base):
     message_id = Column(Integer, ForeignKey("messages.id"))
     created_at = Column(DateTime, default=datetime.now)
 
+# utility function
+def get_db():
+    engine = create_engine("sqlite:///example.db")
+    return sessionmaker(bind=engine)()
 
-# 👇 double underscore h niche lika sab jagah pe 
+def add_to_db(obj):
+    db = get_db()
+    db.add(obj)
+    db.commit()
+    db.close()
+
+# 👇 double underscore h niche likha sab jagah pe 
 if __name__ == "__main__":
     engine = create_engine("sqlite:///example.db")
     Base.metadata.create_all(engine)
