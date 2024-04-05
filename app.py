@@ -9,7 +9,7 @@ def index():
 
 @app.route('/example1/form', methods=['GET','POST'])
 def example_form():
-    status = None
+    status = None   
     if request.method == 'POST':
         name = request.form.get('uname')
         email = request.form.get('email')
